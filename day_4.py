@@ -41,8 +41,11 @@ else:
 
 list_ch = [rock, paper, scissors]
 computer_choice = random.choice(list_ch)
-print("COMPUTER CHOSE:")
-print(computer_choice)
+if int(your_choice) >= 0 and int(your_choice) <= 2:
+    print("COMPUTER CHOSE:")
+    print(computer_choice)
+else:
+    print("Carefully read instruction above")
 
 if your_choice == "0" and computer_choice == rock:
     print("DRAW")
