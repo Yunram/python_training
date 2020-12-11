@@ -1,66 +1,11 @@
 #Creating hangman game
 import random
+import stages_page
 
 word_list = ["apple", "baboon", "camel", "ramilia", "madagascar", "america", "tanzania"]
 chosen_word = random.choice(word_list)
 word_length = len(chosen_word)
 lives = 6
-stages = ['''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========
-''']
 
 #TODO-1: - Create an empty List called display.
 display = []
@@ -82,10 +27,10 @@ while end_of_game == False:
     elif guess in chosen_word:
         print(f"You are right. Our word has that letter: {' '.join(display)}")
     else:
-        print("This letter not in our word")
+        print(f"This letter not in our word. Try ones more. {' '.join(display)}")
     if guess not in chosen_word:
         lives -= 1
-        print(stages[lives])
+        print(stages_page.stages[lives])
         if lives == 0:
             end_of_game = True
             print("You lose")
