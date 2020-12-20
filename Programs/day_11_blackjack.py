@@ -1,7 +1,6 @@
 from art import logo_blackjack
+from replit import clear
 import random
-
-print(logo_blackjack)
 
 def deal_card():
     """Return random card"""
@@ -36,33 +35,38 @@ def compare(current_score_of_user, current_score_of_computer):
     else:
         return "You lose"
 
-user_cards = []
-computer_cards = []
-is_game_over = False
+def play_game():
+    print(logo_blackjack)
 
-for i in range(2):
-    user_cards.append(deal_card())
-    computer_cards.append(deal_card())
-while not is_game_over:
-    current_score_of_user = calculate_score(user_cards)
-    current_score_of_computer = calculate_score(computer_cards)
-    print(f"Your cards: {user_cards} and current score of yours: {current_score_of_user}")
-    print(f"Computer's first card: [{computer_cards[0]}]")
-    if current_score_of_user == 0 or current_score_of_computer == 0 or current_score_of_user > 21:
-        is_game_over = True
-    else:
-        want_card = input("To get another card type 'y', to pass type 'n': ")
-        if want_card == "y":
-            user_cards.append(deal_card())
-        else:
+    user_cards = []
+    computer_cards = []
+    is_game_over = False
+
+    for i in range(2):
+        user_cards.append(deal_card())
+        computer_cards.append(deal_card())
+    while not is_game_over:
+        current_score_of_user = calculate_score(user_cards)
+        current_score_of_computer = calculate_score(computer_cards)
+        print(f"Your cards: {user_cards} and current score of yours: {current_score_of_user}")
+        print(f"Computer's first card: [{computer_cards[0]}]")
+        if current_score_of_user == 0 or current_score_of_computer == 0 or current_score_of_user > 21:
             is_game_over = True
+        else:
+            want_card = input("To get another card type 'y', to pass type 'n': ")
+            if want_card == "y":
+                user_cards.append(deal_card())
+            else:
+                is_game_over = True
 
-while current_score_of_computer != 0 and current_score_of_computer < 17:
-    computer_cards.append(deal_card())
-    current_score_of_computer = calculate_score(computer_cards)
+    while current_score_of_computer != 0 and current_score_of_computer < 17:
+        computer_cards.append(deal_card())
+        current_score_of_computer = calculate_score(computer_cards)
 
-print(f"Your final hand: {user_cards} and final score: {current_score_of_user}")
-print(f"Computer's final hand: {computer_cards}, final score: {current_score_of_computer}")
-print(compare(current_score_of_user, current_score_of_computer))
+    print(f"Your final hand: {user_cards} and final score: {current_score_of_user}")
+    print(f"Computer's final hand: {computer_cards}, final score: {current_score_of_computer}")
+    print(compare(current_score_of_user, current_score_of_computer))
 
-
+while input("Do you want to play a game of blackjack? Type 'y' or 'n': ") == "y":
+    clear()
+    play_game()
