@@ -26,7 +26,6 @@ def calculator():
     while should_continue:
         chosen_operation = input("Pick an operation: ")
         next_num = float(input("Type next number: "))
-
         calculation_function = operations[chosen_operation]
         answer = calculation_function(num1, next_num)
 
